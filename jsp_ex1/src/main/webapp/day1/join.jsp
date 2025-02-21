@@ -56,7 +56,8 @@
 	
 	function fnJoin() {
 		let join = document.join;
-		console.log(join.pwd.value == "1234");
+		var pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
+		console.log(pattern);
 		
 		if(join.id.value == ""){
 			alert("아이디를 입력해주세요!");
@@ -70,6 +71,13 @@
 			return;
 		}
 		
+		if(join.pwd.value != join.pwd2.value){
+			alert("비밀번호를 확인해주세요.")
+			join.pwd2.focus();
+			return;
+		}
+		// 우선 확인하면 pwd2를 아래처럼 검사 할 필요가 없어짐. pwd만 확인.
+		
 		if(join.pwd.value == ""){
 			alert("비밀번호를 입력해주세요!");
 			join.pwd.focus();
@@ -81,18 +89,13 @@
 			join.pwd.focus();
 			return;
 		}
-
-		if(join.pwd.value != join.pwd2.value){
-			alert("비밀번호를 확인해주세요.")
-			join.pwd2.focus();
-			return;
-		}
 		
-		var pattern = /[`~!@#$%^&*|\\\'\";:\/?]/gi;
-		
-		if(!pattern.test(pw1)){
+		if(!pattern.test(join.pwd.value)){
             alert("비밀번호는 특수문자가 포함되어야합니다.");
+			join.pwd.focus();
             return;
         }
+		
+		join.submit();
 	}
 </script>
