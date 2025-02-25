@@ -27,6 +27,7 @@ table, th, td {
 }
 .active{
 	background-color: #bbb;
+	font-weight : bold;
 }
 a {
 	text-decoration:none;
@@ -72,7 +73,7 @@ a {
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		}
 		if(request.getParameter("size") != null){
-			
+			pageSize = Integer.parseInt(request.getParameter("size"));			
 		}
 		
 		int offset = (currentPage - 1) * pageSize;
